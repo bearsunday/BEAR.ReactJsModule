@@ -45,6 +45,15 @@ class Restx extends ResourceObject
     public function onGet(string $id): ResourceObject
     {
       // set initial state to $body property
+      // ...
+        $this->body = [
+            'user' => $userState,
+            'entries' => $entriesState,
+            'comments' => $commentState,
+            'filter' => $filterState
+        ];
+
+        return $this;
     }
 }
     
