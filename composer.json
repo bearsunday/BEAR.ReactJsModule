@@ -1,5 +1,5 @@
 {
-    "name": "bear/react-js-module",
+    "name": "bear/reactjs-module",
     "description": "ReactJsModule for BEAR.Sunday",
     "require-dev": {
         "php": ">=7.0.0",
