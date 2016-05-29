@@ -61,7 +61,8 @@ class Restx extends ResourceObject
 
 ### Template
 
-**BEAR.ReactJsModule** needs php template code. For exapmle, `Index.php` page resource needs `Index.html.php` as following.
+We need php template code. For exapmle, `Index.php` page resource needs `Index.html.php` template file.
+
 
 ```php
 /** @var $ssr \BEAR\ReactJsModule\ReduxSsrInterface */
@@ -78,7 +79,10 @@ return <<<"EOD"
     <title>Hello BEAR SSR</title>
   </head>
   <body>
+    <!-- rendered markup -- >
     <div id="root">{$html}</div>
+
+    <!-- init client -- >
     {$js}
     <script src="build/react.bundle.js"></script>
     <script src="build/client.bundle.js"></script>
