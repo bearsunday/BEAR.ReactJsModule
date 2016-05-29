@@ -69,14 +69,16 @@ We need php template code. For exapmle, `Index.php` page resource needs `Index.h
 /** @var $ro  \BEAR\Resource\ResourceObject*/
 
 $title = htmlspecialchars($ro->body['title'], ENT_QUOTES, 'UTF-8');
-$state = ['hello'=> ['message' => 'Hello SSR !']];
+
+// render with initial state
+$state = $ro->body;
 list($html, $js) = $ssr('App', $state);
 
 return <<<"EOD"
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hello BEAR SSR</title>
+    <title>{$title}</title>
   </head>
   <body>
     <!-- rendered markup -- >
