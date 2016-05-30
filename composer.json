@@ -1,10 +1,13 @@
 {
     "name": "bear/reactjs-module",
-    "description": "ReactJsModule for BEAR.Sunday",
+    "description": "Redux React Serevr-Side Rendering using V8Js module for BEAR.Sunday",
+    "require": {
+      "php": ">=7.0.0",
+      "bear/resource": "^1.2",
+      "koriym/redux-react-ssr": "^0.1"
+    },
     "require-dev": {
-        "php": ">=7.0.0",
-        "bear/resource": "^1.2",
-        "koriym/redux-react-ssr": "^0.1"
+        "phpunit/phpunit": "^5.3"
     },
     "license": "MIT",
     "authors": [
@@ -47,8 +50,5 @@
             "@test"
         ]
     },
-    "minimum-stability": "stable",
-    "require": {
-        "phpunit/phpunit": "^5.3"
-    }
+    "minimum-stability": "stable"
 }
