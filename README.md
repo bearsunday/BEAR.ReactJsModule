@@ -27,7 +27,7 @@ $this->install(new ReactJsModule($reactLibSrc, $reactAppSrc));
 
 ### Redux React Application
 
-You need two js code. One is a [library](https://github.com/koriym/Koriym.ReduxReactSsr/blob/master/example/webpack.config.js#L7) ([react.js](https://github.com/koriym/Koriym.ReduxReactSsr/blob/master/example/common/react.js)) and the other one is [concatenated all custom code](https://github.com/koriym/Koriym.ReduxReactSsr/blob/master/example/webpack.config.js#L8) ([app.js](https://github.com/koriym/Koriym.ReduxReactSsr/blob/master/example/common/app.js)). See [example](https://github.com/koriym/Koriym.ReduxReactSsr/tree/master/example) application code and [how to install](https://github.com/koriym/Koriym.ReduxReactSsr#run-example) it.
+You need two js code. One is a [library](https://github.com/koriym/Koriym.ReduxReactSsr/blob/1.x/example/webpack.config.js#L7) ([react.js](https://github.com/koriym/Koriym.ReduxReactSsr/blob/1.x/example/common/react.js)) and the other one is [concatenated all custom code](https://github.com/koriym/Koriym.ReduxReactSsr/blob/1.x/example/webpack.config.js#L8) ([app.js](https://github.com/koriym/Koriym.ReduxReactSsr/blob/1.x/example/common/app.js)). See [example](https://github.com/koriym/Koriym.ReduxReactSsr/tree/1.x/example) application code and [how to install](https://github.com/koriym/Koriym.ReduxReactSsr#run-example) it.
 
 ### ResourceOjbect
 
