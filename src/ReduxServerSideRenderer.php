@@ -11,6 +11,9 @@ use BEAR\Resource\ResourceObject;
 use Koriym\ReduxReactSsr\ReduxSsrInterface;
 use Ray\Aop\WeavedInterface;
 
+/**
+ * @deprecated
+ */
 final class ReduxServerSideRenderer implements RenderInterface
 {
     /**

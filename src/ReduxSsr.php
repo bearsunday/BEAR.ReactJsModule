@@ -10,6 +10,9 @@ namespace BEAR\ReactJsModule;
 
 use BEAR\Resource\RenderInterface;
 
+/**
+ * @deprecated
+ */
 trait ReduxSsr
 {
     /**
