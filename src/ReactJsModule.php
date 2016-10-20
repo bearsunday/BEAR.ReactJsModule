@@ -13,6 +13,9 @@ use Koriym\ReduxReactSsr\ReduxSsrInterface;
 use Ray\Di\AbstractModule;
 use Ray\Di\Scope;
 
+/**
+ * @deprecated
+ */
 class ReactJsModule extends AbstractModule
 {
     /**
