@@ -3,9 +3,9 @@
 
 use Koriym\ReduxReactSsr\ReduxSsrInterface;
 
-/** @var $ro  \BEAR\Resource\ResourceObject*/
-
-list($html, $js) = $ssr('App', $ro->body);
+use BEAR\ReactJsModule\Ssr;
+/* @var $ssr Ssr */
+list($markup, $script) = $ssr->render(['hello']);
 
 return <<<"EOD"
 <!doctype>
@@ -17,9 +17,10 @@ return <<<"EOD"
     <link rel="stylesheet" href="/build/style.css">
 </head>
 <body>
-<div id="root">{$html}></div>
-{$js}
-<script src="/build/restx.bundle.js"></script>
+<div id="root">{$markup}></div>
+<script src="build/react.bundle.js"></script>
+<script src="build/app.bundle.js"></script>
+<script>{$script}</script>
 </body>
 </html>
 EOD;
