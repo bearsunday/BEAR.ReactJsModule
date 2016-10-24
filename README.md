@@ -71,24 +71,25 @@ We need php template code. For exapmle, `Index.php` page resource needs `Index.h
 $title = htmlspecialchars($ro->body['title'], ENT_QUOTES, 'UTF-8');
 
 // render with initial state
-$state = $ro->body;
-list($html, $js) = $ssr('App', $state);
+<?php
 
-return <<<"EOD"
-<!DOCTYPE html>
+use BEAR\ReactJsModule\Ssr;
+/* @var $ssr Ssr */
+list($markup, $script) = $ssr->render(['hello']);
+
+return <<<"EOT"
+<!doctype>
 <html>
-  <head>
-    <title>{$title}</title>
-  </head>
-  <body>
-    <!-- rendered markup -- >
-    <div id="root">{$html}</div>
-
-    <!-- init client -- >
-    {$js}
-    <script src="build/react.bundle.js"></script>
-    <script src="build/client.bundle.js"></script>
-  </body>
+<head>
+    <title>{$ssr->escape('title')}</title>
+</head>
+<body>
+<div id="root">{$markup}</div>
+<script src="build/react.bundle.js"></script>
+<script src="build/app.bundle.js"></script>
+<script>{$script}</script>
+</body>
 </html>
-EOD;
+EOT;
+
 ```
