@@ -20,5 +20,8 @@ class FakeReduxRo extends ResourceObject
         $this->renderer = $renderer;
     }
 
-    public $body = ['hello' => ['message' => 'konichiwa']];
+    public $body = [
+        'hello' => ['message' => 'konichiwa'],
+        'title' => '"this_is_title"'
+    ];
 }
