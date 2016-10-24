@@ -1,8 +1,4 @@
 {
-    "require": {
-        "bear/resource": "~1.4",
-        "koriym/redux-react-ssr": "~0.2"
-    },
     "autoload": {
         "files": ["Greeting.php"]
     }
