@@ -50,6 +50,16 @@ final class Ssr
         return htmlspecialchars($body[$name], ENT_QUOTES, 'UTF-8');
     }
 
+    public function raw($name)
+    {
+        $body = $this->ro->body;
+        if (!isset($body[$name])) {
+            throw new BodyKeyNotExistsException($name);
+        }
+
+        return $body[$name];
+    }
+
     public function render(array $storeNames, $rootContainer = 'App', $domId = 'root')
     {
         $body = $this->ro->body;

@@ -2,6 +2,7 @@
 
 namespace BEAR\ReactJsModule;
 
+use BEAR\ReactJsModule\Exception\BodyKeyNotExistsException;
 use Koriym\ReduxReactSsr\ReduxReactJs;
 
 class SsrTest extends \PHPUnit_Framework_TestCase
@@ -28,5 +29,25 @@ class SsrTest extends \PHPUnit_Framework_TestCase
     {
         $title = $this->ssr->escape('title');
         $this->assertSame('&quot;this_is_title&quot;', $title);
+    }
+
+
+    public function testEscapeNoKey()
+    {
+        $this->expectException(BodyKeyNotExistsException::class);
+        $this->ssr->escape('__INVALID_KEY__');
+    }
+
+
+    public function testRaw()
+    {
+        $title = $this->ssr->raw('title');
+        $this->assertSame('"this_is_title"', $title);
+    }
+
+    public function testRawNoKey()
+    {
+        $this->expectException(BodyKeyNotExistsException::class);
+        $this->ssr->raw('__INVALID_KEY__');
     }
 }

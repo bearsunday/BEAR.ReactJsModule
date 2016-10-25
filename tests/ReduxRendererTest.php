@@ -2,25 +2,14 @@
 
 namespace BEAR\ReactJsModule;
 
+use BEAR\ReactJsModule\Exception\BodyKeyNotExistsException;
+
 class ReduxRendererTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testRender()
     {
         $reactBundleJs = file_get_contents(__DIR__ . '/Fake/react.bundle.js');
         $appBundleJs = file_get_contents(__DIR__ . '/Fake/app.bundle.js');
-        $template = <<<EOT
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{ title }}</title>
-  </head>
-  <body>
-    <div id="root">{{ markup }}</div>
-    <script>{{ js }}</script>
-  </body>
-</html>
-EOT;
         $reduxRenderer = new ReduxRenderer(
             'app',
             $reactBundleJs,
@@ -48,5 +37,22 @@ EOT;
 EOT;
         $this->assertSame($expceted, $result);
     }
+
+    public function testRenderWithNoKey()
+    {
+        $this->expectException(BodyKeyNotExistsException::class);
+        $reactBundleJs = file_get_contents(__DIR__ . '/Fake/react.bundle.js');
+        $appBundleJs = file_get_contents(__DIR__ . '/Fake/app.bundle.js');
+        $reduxRenderer = new ReduxRenderer(
+            'app',
+            $reactBundleJs,
+            $appBundleJs
+        );
+        $ro = new FakeReduxRo;
+        unset($ro->body['hello']);
+        $ro->setRenderer($reduxRenderer);
+        $ro->toString();
+    }
+
 }
 
