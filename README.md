@@ -51,13 +51,13 @@ class Greeting extends ResourceObject
         $this->renderer = $renderer;
     }
 
-    public $body = [
-        'title' => 'Greeting',
-        'hello' => ['message' => 'konichiwa']
-    ];
-
     public function onGet()
     {
+        $this->body = [
+            'title' => 'Greeting',
+            'hello' => ['message' => 'konichiwa']
+        ];
+
         return $this;
     }
 }
@@ -68,8 +68,7 @@ class Greeting extends ResourceObject
 ### Template
 
 We need php template code. For exapmle, `Index.php` page resource needs `Index.html.php` template file.
-You can use `escape` pr 
-
+You can get the value of body by `escape()` or `raw()`.
 
 ```php
 <?php
