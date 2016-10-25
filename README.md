@@ -16,65 +16,65 @@
 composer require bear/reactjs-module
 ```
 
+### Redux React Application
+
+You need two js bundled file. The one is an application bundled file `{app_name}.bundle.js` and react bundled js file `react.bundle.js`. 
+For instance, you named application simply 'app'. You need `app.bundle.js` and `react.bundle.js`
+
 ### Module Install
 
 ```php
-$baseDir = dirname(dirname(__DIR__));
-$reactLibSrc = $baseDir . '/var/www/build/react.bundle.js';
-$reactAppSrc = $baseDir . '/var/www/build/app.bundle.js';
-$this->install(new ReactJsModule($reactLibSrc, $reactAppSrc));
+$baseDir = dirname(__DIR__, 2);
+$this->install(new ReduxModule($baseDir, 'app');
 ```
 
-### Redux React Application
-
-You need two js code. One is a [library](https://github.com/koriym/Koriym.ReduxReactSsr/blob/1.x/example/webpack.config.js#L7) ([react.js](https://github.com/koriym/Koriym.ReduxReactSsr/blob/1.x/example/common/react.js)) and the other one is [concatenated all custom code](https://github.com/koriym/Koriym.ReduxReactSsr/blob/1.x/example/webpack.config.js#L8) ([app.js](https://github.com/koriym/Koriym.ReduxReactSsr/blob/1.x/example/common/app.js)). See [example](https://github.com/koriym/Koriym.ReduxReactSsr/tree/1.x/example) application code and [how to install](https://github.com/koriym/Koriym.ReduxReactSsr#run-example) it.
 
 ### ResourceOjbect
 
-Use server-side renderer with `ReduxSsr `trait.
+Set `Redux Server Side Renderer` with named binding. The biding name format is `redux_{app_name}`.
 
 ```php
-use BEAR\ReactJsModule\ReduxSsr;
-use BEAR\Resource\Annotation\Embed;
+
+use BEAR\Resource\RenderInterface;
 use BEAR\Resource\ResourceObject;
+use Ray\Di\Di\Inject;
+use Ray\Di\Di\Named;
 
-class Restx extends ResourceObject
+class Greeting extends ResourceObject
 {
-    use ReduxSsr;
-
-    public function onGet(string $id): ResourceObject
+    /**
+     * @Inject
+     * @Named("redux_app")
+     */
+    public function setRenderer(RenderInterface $renderer)
     {
-      // set initial state to $body property
-      // ...
-        $this->body = [
-            'user' => $userState,
-            'entries' => $entriesState,
-            'comments' => $commentState,
-            'filter' => $filterState
-        ];
+        $this->renderer = $renderer;
+    }
 
+    public $body = [
+        'title' => 'Greeting',
+        'hello' => ['message' => 'konichiwa']
+    ];
+
+    public function onGet()
+    {
         return $this;
     }
 }
+
     
 ```
 
 ### Template
 
 We need php template code. For exapmle, `Index.php` page resource needs `Index.html.php` template file.
+You can use `escape` pr 
 
 
 ```php
-/** @var $ssr \BEAR\ReactJsModule\ReduxSsrInterface */
-/** @var $ro  \BEAR\Resource\ResourceObject*/
-
-$title = htmlspecialchars($ro->body['title'], ENT_QUOTES, 'UTF-8');
-
-// render with initial state
 <?php
 
-use BEAR\ReactJsModule\Ssr;
-/* @var $ssr Ssr */
+/* @var $ssr \BEAR\ReactJsModule\Ssr */
 list($markup, $script) = $ssr->render(['hello']);
 
 return <<<"EOT"
