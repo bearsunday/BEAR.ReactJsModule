@@ -12,6 +12,7 @@ use BEAR\Resource\RenderInterface;
 
 /**
  * @deprecated
+ * @codeCoverageIgnore
  */
 trait ReduxSsr
 {

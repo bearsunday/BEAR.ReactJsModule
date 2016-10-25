@@ -13,6 +13,7 @@ use Ray\Aop\WeavedInterface;
 
 /**
  * @deprecated
+ * @codeCoverageIgnore
  */
 final class ReduxServerSideRenderer implements RenderInterface
 {
