@@ -72,8 +72,9 @@ You can get the value of body by `escape()` or `raw()`.
 
 ```php
 <?php
+use BEAR\ReactJsModule\Ssr;
 
-/* @var $ssr \BEAR\ReactJsModule\Ssr */
+/* @var $ssr Ssr */
 list($markup, $script) = $ssr->render(['hello']);
 
 return <<<"EOT"
