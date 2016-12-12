@@ -7,7 +7,7 @@ use BEAR\ReactJsModule\ReduxModule;
 use BEAR\Resource\ResourceObject;
 use Ray\Di\Injector;
 
-$injector = new Injector(new ReduxModule(__DIR__ . '/build', 'app'));
+$injector = new Injector(new ReduxModule(__DIR__ . '/build', 'ssr_app'));
 $index = $injector->getInstance(Greeting::class);
 /* @var $index ResourceObject */
 

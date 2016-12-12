@@ -48,6 +48,6 @@ class ReduxModule extends AbstractModule
         $this->bind()->annotatedWith('app_bundle_src_' . $this->name)->toInstance($this->appBundleSrc);
         $this->bind()->annotatedWith('redux_app_name_' . $this->name)->toInstance($this->name);
         $name = "appName=redux_app_name_{$this->name},reactBundleSrc=react_bundle_src,appBundleSrc=app_bundle_src_{$this->name}";
-        $this->bind(RenderInterface::class)->annotatedWith('redux_' . $this->name)->toConstructor(ReduxRenderer::class, $name);
+        $this->bind(RenderInterface::class)->annotatedWith($this->name)->toConstructor(ReduxRenderer::class, $name);
     }
 }
