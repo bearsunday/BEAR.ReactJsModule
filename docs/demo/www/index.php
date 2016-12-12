@@ -1,7 +1,7 @@
 <?php
 
-require dirname(__DIR__, 1) . '/vendor/autoload.php';
 require dirname(__DIR__, 3) . '/vendor/autoload.php';
+require dirname(__DIR__, 1) . '/vendor/autoload.php';
 
 use BEAR\ReactJsModule\ReduxModule;
 use BEAR\Resource\ResourceObject;
