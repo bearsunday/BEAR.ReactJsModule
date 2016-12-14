@@ -11,12 +11,13 @@ namespace BEAR\ReactJsModule;
 use BEAR\Resource\RenderInterface;
 use BEAR\Resource\ResourceObject;
 use Koriym\ReduxReactSsr\ReduxReactJs;
+use Koriym\ReduxReactSsr\ReduxReactJsInterface;
 use Ray\Aop\WeavedInterface;
 
 final class ReduxRenderer implements RenderInterface
 {
     /**
-     * @var ReduxReactJs
+     * @var ReduxReactJsInterface
      */
     private $redux;
 
@@ -29,7 +30,7 @@ final class ReduxRenderer implements RenderInterface
      * @param string       $appName
      * @param ReduxReactJs $redux
      */
-    public function __construct(string $appName, ReduxReactJs $redux)
+    public function __construct(string $appName, ReduxReactJsInterface $redux)
     {
         $this->appName = $appName;
         $this->redux = $redux;

@@ -8,6 +8,7 @@ namespace BEAR\ReactJsModule;
 
 use BEAR\Resource\RenderInterface;
 use Koriym\ReduxReactSsr\ReduxReactJs;
+use Koriym\ReduxReactSsr\ReduxReactJsInterface;
 use Ray\Di\AbstractModule;
 
 class ReduxModule extends AbstractModule
@@ -49,7 +50,7 @@ class ReduxModule extends AbstractModule
         $this->bind()->annotatedWith('app_bundle_src_' . $this->name)->toInstance($this->appBundleSrc);
         $this->bind()->annotatedWith('redux_app_name_' . $this->name)->toInstance($this->name);
         $reduxReactJsname = "reactBundleSrc=react_bundle_src,appBundleSrc=app_bundle_src_{$this->name}";
-        $this->bind(ReduxReactJs::class)->annotatedWith($this->name)->toConstructor(ReduxReactJs::class, $reduxReactJsname);
+        $this->bind(ReduxReactJsInterface::class)->annotatedWith($this->name)->toConstructor(ReduxReactJs::class, $reduxReactJsname);
         $reduxRendererName = "appName=redux_app_name_{$this->name},redux={$this->name}";
         $this->bind(RenderInterface::class)->annotatedWith($this->name)->toConstructor(ReduxRenderer::class, $reduxRendererName);
     }
