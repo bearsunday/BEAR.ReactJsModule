@@ -26,18 +26,13 @@ final class ReduxRenderer implements RenderInterface
     private $appName;
 
     /**
-     * ReduxRenderer constructor.
-     *
-     * @param string $appName        redux application name
-     * @param string $reactBundleSrc redux-lib bundled source
-     * @param string $appBundleSrc   redux-app bundled source
+     * @param string       $appName
+     * @param ReduxReactJs $redux
      */
-    public function __construct(string $appName, string $reactBundleSrc, string $appBundleSrc)
+    public function __construct(string $appName, ReduxReactJs $redux)
     {
         $this->appName = $appName;
-        $this->reactLibsrc = $reactBundleSrc;
-        $this->reactAppSrc = $appBundleSrc;
-        $this->redux = new ReduxReactJs($reactBundleSrc, $appBundleSrc);
+        $this->redux = $redux;
     }
 
     /**

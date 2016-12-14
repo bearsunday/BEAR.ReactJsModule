@@ -3,6 +3,7 @@
 namespace BEAR\ReactJsModule;
 
 use BEAR\ReactJsModule\Exception\BodyKeyNotExistsException;
+use Koriym\ReduxReactSsr\ReduxReactJs;
 
 class ReduxRendererTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,8 +13,7 @@ class ReduxRendererTest extends \PHPUnit_Framework_TestCase
         $appBundleJs = file_get_contents(__DIR__ . '/Fake/app.bundle.js');
         $reduxRenderer = new ReduxRenderer(
             'app',
-            $reactBundleJs,
-            $appBundleJs
+            new ReduxReactJs($reactBundleJs, $appBundleJs)
         );
         $ro = new FakeReduxRo;
         $ro->setRenderer($reduxRenderer);
@@ -45,8 +45,7 @@ EOT;
         $appBundleJs = file_get_contents(__DIR__ . '/Fake/app.bundle.js');
         $reduxRenderer = new ReduxRenderer(
             'app',
-            $reactBundleJs,
-            $appBundleJs
+            new ReduxReactJs($reactBundleJs, $appBundleJs)
         );
         $ro = new FakeReduxRo;
         unset($ro->body['hello']);
