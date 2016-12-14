@@ -19,7 +19,8 @@
     "autoload": {
         "psr-4": {
             "BEAR\\ReactJsModule\\": [
-                "src/"
+                "src/",
+                "src-deprecated"
             ]
         }
     },
