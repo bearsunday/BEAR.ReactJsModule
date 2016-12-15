@@ -31,13 +31,11 @@ class SsrTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('&quot;this_is_title&quot;', $title);
     }
 
-
     public function testEscapeNoKey()
     {
         $this->expectException(BodyKeyNotExistsException::class);
         $this->ssr->escape('__INVALID_KEY__');
     }
-
 
     public function testRaw()
     {

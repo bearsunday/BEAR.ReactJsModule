@@ -1,9 +1,8 @@
 <?php
 /** @var $ssr ReduxSsrInterface */
-
+use BEAR\ReactJsModule\Ssr;
 use Koriym\ReduxReactSsr\ReduxSsrInterface;
 
-use BEAR\ReactJsModule\Ssr;
 /* @var $ssr Ssr */
 list($markup, $script) = $ssr->render(['hello']);
 

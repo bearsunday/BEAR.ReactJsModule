@@ -11,12 +11,13 @@ namespace BEAR\ReactJsModule;
 use BEAR\Resource\RenderInterface;
 use BEAR\Resource\ResourceObject;
 use Koriym\ReduxReactSsr\ReduxReactJs;
+use Koriym\ReduxReactSsr\ReduxReactJsInterface;
 use Ray\Aop\WeavedInterface;
 
 final class ReduxRenderer implements RenderInterface
 {
     /**
-     * @var ReduxReactJs
+     * @var ReduxReactJsInterface
      */
     private $redux;
 
@@ -26,22 +27,19 @@ final class ReduxRenderer implements RenderInterface
     private $appName;
 
     /**
-     * ReduxRenderer constructor.
-     *
-     * @param string $appName        redux application name
-     * @param string $reactBundleSrc redux-lib bundled source
-     * @param string $appBundleSrc   redux-app bundled source
+     * @param string       $appName
+     * @param ReduxReactJs $redux
      */
-    public function __construct(string $appName, string $reactBundleSrc, string $appBundleSrc)
+    public function __construct(string $appName, ReduxReactJsInterface $redux)
     {
         $this->appName = $appName;
-        $this->reactLibsrc = $reactBundleSrc;
-        $this->reactAppSrc = $appBundleSrc;
-        $this->redux = new ReduxReactJs($reactBundleSrc, $appBundleSrc);
+        $this->redux = $redux;
     }
 
     /**
      * {@inheritdoc}
+     *
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function render(ResourceObject $ro)
     {

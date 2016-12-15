@@ -12,7 +12,7 @@ use BEAR\ReactJsModule\Exception\BodyKeyNotExistsException;
 use BEAR\Resource\ResourceObject;
 use Koriym\ReduxReactSsr\ReduxReactJs;
 
-final class Ssr
+final class Ssr implements SsrInterface
 {
     /**
      * @var array
@@ -34,6 +34,11 @@ final class Ssr
      */
     private $name;
 
+    /**
+     * @param ResourceObject $ro           Resource object to render
+     * @param ReduxReactJs   $reduxReactJs Server side Rnderer
+     * @param string         $name         Redux ReactJs application name
+     */
     public function __construct(ResourceObject $ro, ReduxReactJs $reduxReactJs, string $name)
     {
         $this->ro = $ro;
@@ -41,26 +46,10 @@ final class Ssr
         $this->name = $name;
     }
 
-    public function escape($name)
-    {
-        $body = $this->ro->body;
-        if (! isset($body[$name])) {
-            throw new BodyKeyNotExistsException($name);
-        }
-        return htmlspecialchars($body[$name], ENT_QUOTES, 'UTF-8');
-    }
-
-    public function raw($name)
-    {
-        $body = $this->ro->body;
-        if (!isset($body[$name])) {
-            throw new BodyKeyNotExistsException($name);
-        }
-
-        return $body[$name];
-    }
-
-    public function render(array $storeNames, $rootContainer = 'App', $domId = 'root')
+    /**
+     * {@inheritdoc}
+     */
+    public function render(array $storeNames, string $rootContainer = 'App', string $domId = 'root') : array
     {
         $body = $this->ro->body;
         $store = [];
@@ -75,4 +64,29 @@ final class Ssr
         return [$markup, $script];
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function escape(string $name) : string
+    {
+        $body = $this->ro->body;
+        if (! isset($body[$name])) {
+            throw new BodyKeyNotExistsException($name);
+        }
+
+        return htmlspecialchars($body[$name], ENT_QUOTES, 'UTF-8');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function raw(string $name) : string
+    {
+        $body = $this->ro->body;
+        if (!isset($body[$name])) {
+            throw new BodyKeyNotExistsException($name);
+        }
+
+        return $body[$name];
+    }
 }

@@ -9,7 +9,7 @@ class Greeting extends ResourceObject
 {
     /**
      * @Inject
-     * @Named("redux_app")
+     * @Named("ssr_app")
      */
     public function setRenderer(RenderInterface $renderer)
     {

@@ -16,22 +16,31 @@
 composer require bear/reactjs-module
 ```
 
-### Redux React Application
+### JavaScript code
 
-You need two js bundled file. The one is an application bundled file `{app_name}.bundle.js` and react bundled js file `react.bundle.js`. 
-For instance, you named application simply 'app'. You need `app.bundle.js` and `react.bundle.js`
+You need three js bundled file.
+ 
+ * react.bundle.js React library bundled code
+ * {app-name}.bundle.js Application bundled code for client side
+ * {ssr-app-name}.bundle.js Application bundled code for server side 
+ 
+You can include JavaScript client code (CSS, DOM ..) for `{app}.bundle.js` only. See more detail at the [example](https://github.com/bearsunday/BEAR.ReactJsModule/tree/1.x/docs/demo/ui/webpack.config.js#L7-L9).
+
 
 ### Module Install
 
 ```php
-$baseDir = dirname(__DIR__, 2);
-$this->install(new ReduxModule($baseDir, 'app');
+$distDir = dirname(__DIR__, 2) . '/var/www/dist';
+$this->install(new ReduxModule($distDir, 'ssr_app');
 ```
 
+In this canse, you need to place `ssr-app.bundle.js` at `$baseDir` directory.
 
 ### ResourceOjbect
 
-Set `Redux Server Side Renderer` with named binding. The biding name format is `redux_{app_name}`.
+To inject SSR renderer, Annotate `@Inject` with `@Named` annotation to `setRenderer` setter method
+with `{ssr-app-name}` application name.
+
 
 ```php
 
@@ -44,7 +53,7 @@ class Greeting extends ResourceObject
 {
     /**
      * @Inject
-     * @Named("redux_app")
+     * @Named("ssr_app")
      */
     public function setRenderer(RenderInterface $renderer)
     {
@@ -92,3 +101,4 @@ return <<<"EOT"
 EOT;
 
 ```
+Note: `app.bundle.js` is client javascript code. The page is rendered fully even {$markup} is removed by client JS code.
