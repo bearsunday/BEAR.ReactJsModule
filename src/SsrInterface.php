@@ -13,7 +13,7 @@ interface SsrInterface
     /**
      * Server side Redux ReactJs rendering
      *
-     * @param array $storeNames　　　name of keys `store`
+     * @param array  $storeNames    name of keys `store`
      * @param string $rootContainer name of root container
      * @param string $domId         dom ID
      *

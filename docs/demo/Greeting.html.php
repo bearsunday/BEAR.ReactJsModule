@@ -1,6 +1,7 @@
 <?php
 
 use BEAR\ReactJsModule\Ssr;
+
 /* @var $ssr Ssr */
 list($markup, $script) = $ssr->render(['hello']);
 

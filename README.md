@@ -20,8 +20,8 @@ composer require bear/reactjs-module
 
 You need three js bundled file.
  
- * react.bundle.js     React library bundled code
- * {app-name}.bundle.js     Application bundled code for client side
+ * react.bundle.js React library bundled code
+ * {app-name}.bundle.js Application bundled code for client side
  * {ssr-app-name}.bundle.js Application bundled code for server side 
  
 You can include JavaScript client code (CSS, DOM ..) for `{app}.bundle.js` only. See more detail at the [example](https://github.com/bearsunday/BEAR.ReactJsModule/tree/1.x/docs/demo/ui/webpack.config.js#L7-L9).
@@ -30,8 +30,8 @@ You can include JavaScript client code (CSS, DOM ..) for `{app}.bundle.js` only.
 ### Module Install
 
 ```php
-$baseDir = dirname(__DIR__, 2) . '/var/www/dist';
-$this->install(new ReduxModule($baseDir, 'ssr_app');
+$distDir = dirname(__DIR__, 2) . '/var/www/dist';
+$this->install(new ReduxModule($distDir, 'ssr_app');
 ```
 
 In this canse, you need to place `ssr-app.bundle.js` at `$baseDir` directory.

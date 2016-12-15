@@ -38,6 +38,8 @@ final class ReduxRenderer implements RenderInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function render(ResourceObject $ro)
     {

@@ -52,6 +52,4 @@ EOT;
         $ro->setRenderer($reduxRenderer);
         $ro->toString();
     }
-
 }
-

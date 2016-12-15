@@ -73,6 +73,7 @@ final class Ssr implements SsrInterface
         if (! isset($body[$name])) {
             throw new BodyKeyNotExistsException($name);
         }
+
         return htmlspecialchars($body[$name], ENT_QUOTES, 'UTF-8');
     }
 
