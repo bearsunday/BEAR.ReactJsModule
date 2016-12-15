@@ -16,7 +16,9 @@ matrix:
 
 before_script:
   - sudo apt-get update
-  - sudo apt-get install libv8-5.2-dev g++
+  - sudo add-apt-repository ppa:pinepain/libv8-5.2 -y
+  - sudo apt-get update -q
+  - sudo apt-get install libv8-dev -y
   - printf "\n" | pecl install -f v8js
   - phpenv config-add travis.php.ini
   - composer self-update
