@@ -34,6 +34,11 @@ final class Ssr implements SsrInterface
      */
     private $name;
 
+    /**
+     * @param ResourceObject $ro           Resource object to render
+     * @param ReduxReactJs   $reduxReactJs Server side Rnderer
+     * @param string         $name         Redux ReactJs application name
+     */
     public function __construct(ResourceObject $ro, ReduxReactJs $reduxReactJs, string $name)
     {
         $this->ro = $ro;
