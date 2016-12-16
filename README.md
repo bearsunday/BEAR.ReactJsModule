@@ -16,17 +16,6 @@
 composer require bear/reactjs-module
 ```
 
-### JavaScript code
-
-You need three js bundled file.
- 
- * react.bundle.js React library bundled code
- * {app-name}.bundle.js Application bundled code for client side
- * {ssr-app-name}.bundle.js Application bundled code for server side 
- 
-You can include JavaScript client code (CSS, DOM ..) for `{app}.bundle.js` only. See more detail at the [example](https://github.com/bearsunday/BEAR.ReactJsModule/tree/1.x/docs/demo/ui/webpack.config.js#L7-L9).
-
-
 ### Module Install
 
 ```php
@@ -35,6 +24,37 @@ $this->install(new ReduxModule($distDir, 'ssr_app');
 ```
 
 In this canse, you need to place `ssr-app.bundle.js` at `$baseDir` directory.
+
+### Redux UI Skeleton Install 
+
+Copy skeleton directory to your BEAR.Sunday project root.
+
+```
+cp -r vendor/bear/reactjs-module/ui-skeleton/redux/ui .
+cp vendor/bear/reactjs-module/ui-skeleton/redux/package.json .
+```
+
+Install dependencies.
+
+```
+yarn install
+```
+
+Build ui application.
+
+```
+yarn run build
+```
+
+Three js bundled file is produced.
+ 
+ * react.bundle.js React library bundled code
+ * {app-name}.bundle.js Application bundled code for client side
+ * {ssr-app-name}.bundle.js Application bundled code for server side 
+ 
+You can include JavaScript client code (CSS, DOM ..) for `{app}.bundle.js` only. See more detail at the [example](https://github.com/bearsunday/BEAR.ReactJsModule/tree/1.x/docs/demo/ui/webpack.config.js#L7-L9).
+
+
 
 ### ResourceOjbect
 
@@ -101,4 +121,6 @@ return <<<"EOT"
 EOT;
 
 ```
+
+
 Note: `app.bundle.js` is client javascript code. The page is rendered fully even {$markup} is removed by client JS code.
