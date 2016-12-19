@@ -22,13 +22,13 @@ module.exports = {
         ],
         loaders: [
             {
-                test: /\.jsx?$/,
+              test: /\.(js|jsx)$/,
                 loaders: ['react-hot', 'babel'],
                 exclude: /(node_modules)/
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+                loader: ExtractTextPlugin.extract("style", "css")
             },
             {
                 test: /\.json$/,
