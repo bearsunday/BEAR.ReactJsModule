@@ -9,8 +9,10 @@ export default function configureStore(preloadedState) {
       preloadedState,
       compose(
           applyMiddleware(thunkMiddleware, createLogger()),
-          window.devToolsExtension ? window.devToolsExtension() : f => f
-      )
+          /* eslint-disable no-undef */
+          window.devToolsExtension ? window.devToolsExtension() : f => f,
+          /* eslint-enable no-undef */
+      ),
   );
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
@@ -21,3 +23,4 @@ export default function configureStore(preloadedState) {
   }
   return store;
 }
+
