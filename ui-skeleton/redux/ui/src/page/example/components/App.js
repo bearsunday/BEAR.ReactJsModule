@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Hello from '../containers/HelloWorld';
 
-const App = () => (
-  <div>
-    <Hello />
-  </div>
-);
+export default class App extends Component { // eslint-disable-line react/prefer-stateless-function
+  render() {
+    return (
+      <div>
+        <Hello />
+      </div>
+    );
+  }
+}
 
-export default App;
+if (module.hot) {
+  module.hot.accept();
+}
