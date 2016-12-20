@@ -2,11 +2,11 @@ import { connect } from 'react-redux';
 import { helloWorld } from '../actions';
 import Hello from '../components/Hello';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   message: state.hello.message,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   onClick: () => {
     dispatch(helloWorld());
   },
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const HelloWorld = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Hello);
 
 export default HelloWorld;

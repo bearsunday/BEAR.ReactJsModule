@@ -12,20 +12,20 @@ module.exports = {
     module: {
         preLoaders: [
             {
-                test: /\.js$/,
-                loader: "eslint-loader",
+                test: /\.(js|jsx)$/,
+                loader: "eslint",
                 exclude: /node_modules/
             }
         ],
         loaders: [
             {
-                test: /\.(js)$/,
+                test: /\.(js|jsx)$/,
                 loader: 'babel',
                 exclude: /(node_modules)/
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+                loader: ExtractTextPlugin.extract("style", "css")
             },
             {
                 test: /\.json$/,
@@ -39,7 +39,7 @@ module.exports = {
     },
     resolve: {
         modulesDirectories: [__dirname + '/../node_modules', __dirname],
-        extensions: ["", ".webpack-loader.js", ".web-loader.js", ".loader.js", ".js"]
+        extensions: ["", ".js", ".jsx"],
     },
     plugins: [
         new ExtractTextPlugin("style.css", {
