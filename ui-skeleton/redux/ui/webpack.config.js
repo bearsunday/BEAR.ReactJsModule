@@ -42,7 +42,7 @@ module.exports = {
     },
     resolve: {
         modulesDirectories: [__dirname + '/../node_modules', __dirname],
-        extensions: ["", ".webpack-loader.js", ".web-loader.js", ".loader.js", ".js", ".jsx"]
+        extensions: ["", ".js", ".jsx"],
     },
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),

@@ -12,14 +12,14 @@ module.exports = {
     module: {
         preLoaders: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 loader: "eslint",
                 exclude: /node_modules/
             }
         ],
         loaders: [
             {
-                test: /\.(js)$/,
+                test: /\.(js|jsx)$/,
                 loader: 'babel',
                 exclude: /(node_modules)/
             },
@@ -39,7 +39,7 @@ module.exports = {
     },
     resolve: {
         modulesDirectories: [__dirname + '/../node_modules', __dirname],
-        extensions: ["", ".webpack-loader.js", ".web-loader.js", ".loader.js", ".js"]
+        extensions: ["", ".js", ".jsx"],
     },
     plugins: [
         new ExtractTextPlugin("style.css", {
