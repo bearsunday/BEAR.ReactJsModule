@@ -8,6 +8,8 @@ declare(strict_types=1);
  */
 namespace BEAR\ReactJsModule;
 
+use Koriym\ReduxReactSsr\View;
+
 interface SsrInterface
 {
     /**
@@ -19,7 +21,7 @@ interface SsrInterface
      *
      * @return array [$markup, $script]
      */
-    public function render(array $storeNames, string $rootContainer = 'App', string $domId = 'root') : array;
+    public function render(array $storeNames, string $rootContainer = 'App', string $domId = 'root') : View;
 
     /**
      * Get escaped resource body item

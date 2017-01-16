@@ -10,7 +10,11 @@ class ReduxModuleTest extends \PHPUnit_Framework_TestCase
     {
         $uiPath = __DIR__ . '/Fake';
         $injector = new Injector(new ReduxModule($uiPath, 'ssr_app'));
-        $ro = $injector->getInstance(FakeReduxRo::class);
+        try {
+            $ro = $injector->getInstance(FakeReduxRo::class);
+        } catch (\Exception $e) {
+            echo $e;
+        }
         $this->assertInstanceOf(ReduxRenderer::class, $ro->renderer);
     }
 }

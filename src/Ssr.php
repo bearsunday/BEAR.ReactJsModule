@@ -11,6 +11,7 @@ namespace BEAR\ReactJsModule;
 use BEAR\ReactJsModule\Exception\BodyKeyNotExistsException;
 use BEAR\Resource\ResourceObject;
 use Koriym\ReduxReactSsr\ReduxReactJs;
+use Koriym\ReduxReactSsr\View;
 
 final class Ssr implements SsrInterface
 {
@@ -49,7 +50,7 @@ final class Ssr implements SsrInterface
     /**
      * {@inheritdoc}
      */
-    public function render(array $storeNames, string $rootContainer = 'App', string $domId = 'root') : array
+    public function render(array $storeNames, string $rootContainer = 'App', string $domId = 'root') : View
     {
         $body = $this->ro->body;
         $store = [];
@@ -59,9 +60,9 @@ final class Ssr implements SsrInterface
             }
             $store[$storeName] = $body[$storeName];
         }
-        list($markup, $script) = $this->reduxReactJs->__invoke($rootContainer, $store, $domId);
+        $view = $this->reduxReactJs->__invoke($rootContainer, $store, $domId);
 
-        return [$markup, $script];
+        return $view;
     }
 
     /**
