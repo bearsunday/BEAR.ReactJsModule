@@ -4,7 +4,7 @@ use BEAR\ReactJsModule\Ssr;
 use Koriym\ReduxReactSsr\ReduxSsrInterface;
 
 /* @var $ssr Ssr */
-list($markup, $script) = $ssr->render(['hello']);
+$view = $ssr->render(['hello']);
 
 return <<<"EOD"
 <!doctype>
@@ -16,10 +16,10 @@ return <<<"EOD"
     <link rel="stylesheet" href="/build/style.css">
 </head>
 <body>
-<div id="root">{$markup}></div>
+<div id="root">{$view->markup}></div>
 <script src="build/react.bundle.js"></script>
 <script src="build/app.bundle.js"></script>
-<script>{$script}</script>
+<script>{$view->js}</script>
 </body>
 </html>
 EOD;

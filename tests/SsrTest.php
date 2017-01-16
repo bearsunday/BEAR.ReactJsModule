@@ -3,6 +3,7 @@
 namespace BEAR\ReactJsModule;
 
 use BEAR\ReactJsModule\Exception\BodyKeyNotExistsException;
+use Koriym\ReduxReactSsr\ExceptionHandler;
 use Koriym\ReduxReactSsr\ReduxReactJs;
 
 class SsrTest extends \PHPUnit_Framework_TestCase
@@ -18,7 +19,9 @@ class SsrTest extends \PHPUnit_Framework_TestCase
             new FakeReduxRo,
             new ReduxReactJs(
                 file_get_contents(__DIR__ . '/Fake/react.bundle.js'),
-                file_get_contents(__DIR__ . '/Fake/app.bundle.js')
+                file_get_contents(__DIR__ . '/Fake/app.bundle.js'),
+                new ExceptionHandler(),
+                new \V8Js()
             ),
             'app'
         );
