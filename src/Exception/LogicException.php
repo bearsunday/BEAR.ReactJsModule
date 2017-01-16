@@ -6,6 +6,6 @@
  */
 namespace BEAR\ReactJsModule\Exception;
 
-class LogicException extends \RuntimeException
+class LogicException extends \LogicException
 {
 }
