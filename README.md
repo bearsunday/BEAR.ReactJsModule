@@ -122,5 +122,12 @@ EOT;
 
 ```
 
-
 Note: `app.bundle.js` is client javascript code. The page is rendered fully even {$markup} is removed by client JS code.
+
+### VoidV8Module
+
+It is possible to install `VoidV8Module` to run non V8Js environment for clien side rendering only.
+
+```php
+$this->install(new FakeV8Module(new ReduxModule($distDir, 'ssr_hello')));
+```

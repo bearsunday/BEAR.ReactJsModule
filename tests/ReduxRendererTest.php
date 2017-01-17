@@ -34,7 +34,7 @@ class ReduxRendererTest extends \PHPUnit_Framework_TestCase
     <link rel="stylesheet" href="/build/style.css">
 </head>
 <body>
-<div id="root"><div data-reactroot="" data-reactid="1" data-react-checksum="2096181691"><div data-reactid="2"><h1 data-reactid="3">konichiwa</h1><button data-reactid="4">Click</button></div></div>></div>
+<div id="root"><div data-reactroot="" data-reactid="1" data-react-checksum="2096181691"><div data-reactid="2"><h1 data-reactid="3">konichiwa</h1><button data-reactid="4">Click</button></div></div></div>
 <script src="build/react.bundle.js"></script>
 <script src="build/app.bundle.js"></script>
 <script>ReactDOM.render(React.createElement(Provider,{store:configureStore({"hello":{"message":"konichiwa"}})},React.createElement(App)),document.getElementById('root'));</script>
