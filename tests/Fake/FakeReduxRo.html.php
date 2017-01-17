@@ -16,7 +16,7 @@ return <<<"EOD"
     <link rel="stylesheet" href="/build/style.css">
 </head>
 <body>
-<div id="root">{$view->markup}></div>
+<div id="root">{$view->markup}</div>
 <script src="build/react.bundle.js"></script>
 <script src="build/app.bundle.js"></script>
 <script>{$view->js}</script>
