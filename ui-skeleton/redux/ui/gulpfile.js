@@ -20,9 +20,9 @@ gulp.task('clean', del.bind(null, uiConfig.cleanup_dir, {force: true}));
 
 gulp.task('webpack', function () {
   return gulp.src('./src/**')
-      .pipe(webpack(webpackConfig))
-      .pipe(gulp.dest(uiConfig.public + '/build'))
-      .pipe(gulp.dest(uiConfig.public + '/dist'));
+    .pipe(webpack(webpackConfig))
+    .pipe(gulp.dest(uiConfig.public + '/build'))
+    .pipe(gulp.dest(uiConfig.public + '/dist'));
 });
 
 gulp.task('reload', function () {
@@ -74,46 +74,46 @@ gulp.task('browser-sync', ['php'], function () {
 
 gulp.task('sync', ['browser-sync'], function () {
   gulp.watch(
-      uiConfig.watch_to_sync,
-      ['reload']
+    uiConfig.watch_to_sync,
+    ['reload']
   );
 });
 
 gulp.task('php-clean', ['php'], function () {
   gulp.watch(
-      '../src/**/*.php',
-      ['clean']
+    '../src/**/*.php',
+    ['clean']
   );
 });
 
 gulp.task('php-cs', ['php'], function () {
   gulp.watch(
-      '../src/**/*.php',
-      ['clean', 'phpcs', 'phpmd']
+    '../src/**/*.php',
+    ['clean', 'phpcs', 'phpmd']
   );
 });
 
 gulp.task('phpcs', function () {
   var standard = fileExists(projectRoot + '/phpcs.xml') ? projectRoot + '/phpcs.xml' : 'psr2';
   return gulp.src(projectRoot + '/src/**/*.php')
-      .pipe(phpcs({
-        bin: projectRoot + '/vendor/bin/phpcs',
-        standard: standard,
-        warningSeverity: 0,
-        colors: true
-      }))
-      .pipe(phpcs.reporter('log'));
+    .pipe(phpcs({
+      bin: projectRoot + '/vendor/bin/phpcs',
+      standard: standard,
+      warningSeverity: 0,
+      colors: true
+    }))
+    .pipe(phpcs.reporter('log'));
 });
 
 gulp.task('phpmd', function () {
   var ruleset = fileExists(projectRoot + '/phpmd.xml') ? projectRoot + '/phpmd.xml' : 'unusedcode';
   return gulp.src(projectRoot + '/src/**/*.php')
-      .pipe(phpmd({
-        bin: projectRoot + 'vendor/bin/phpmd',
-        format: 'text',
-        ruleset: ruleset
-      }))
-      .pipe(phpmd.reporter('log'));
+    .pipe(phpmd({
+      bin: projectRoot + 'vendor/bin/phpmd',
+      format: 'text',
+      ruleset: ruleset
+    }))
+    .pipe(phpmd.reporter('log'));
 });
 
 // start web server
