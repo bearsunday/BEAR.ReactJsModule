@@ -1,26 +1,25 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: {
     react: './ui/react-bundle',
-    ssr_app: './ui/app/server',
-    app: './ui/app/client',
+    ssr_app: './ui/src/app/server',
+    app: './ui/src/app/client',
   },
   output: {
     path: path.join(__dirname, '/../www/build'),
     filename: '[name].bundle.js',
-    publicPath: '/static/'
+    publicPath: '/static/',
   },
   plugins: [
   ],
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel'],
+    rules: [{
+      test: /\.jsx?$/,
+      use: ['babel-loader'],
       exclude: /node_modules/,
-      include: __dirname
-    }]
-  }
-}
+      include: __dirname,
+    }],
+  },
+};

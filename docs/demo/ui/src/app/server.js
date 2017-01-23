@@ -1,5 +1,5 @@
-import configureStore from '../common/store/configureStore';
-import App from '../common/components/App';
+import configureStore from '../../src/store/configureStore';
+import App from '../../src/components/App';
 
 global.App = App;
 global.configureStore = configureStore;
