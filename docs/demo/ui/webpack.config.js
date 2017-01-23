@@ -1,5 +1,4 @@
-var path = require('path')
-var webpack = require('webpack')
+var path = require('path');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -16,9 +15,9 @@ module.exports = {
   plugins: [
   ],
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel'],
+    rules: [{
+      test: /\.jsx?$/,
+      use: ['babel-loader'],
       exclude: /node_modules/,
       include: __dirname
     }]
