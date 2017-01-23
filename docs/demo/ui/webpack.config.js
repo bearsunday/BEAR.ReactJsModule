@@ -1,4 +1,4 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/../www/build'),
     filename: '[name].bundle.js',
-    publicPath: '/static/'
+    publicPath: '/static/',
   },
   plugins: [
   ],
@@ -19,7 +19,7 @@ module.exports = {
       test: /\.jsx?$/,
       use: ['babel-loader'],
       exclude: /node_modules/,
-      include: __dirname
-    }]
-  }
-}
+      include: __dirname,
+    }],
+  },
+};
