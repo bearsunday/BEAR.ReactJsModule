@@ -4,6 +4,7 @@ var uiConfig = require('./ui.config.js');
 var webpack = require('webpack');
 
 module.exports = {
+  devtool: 'cheap-module-source-map',
   entry: uiConfig.entry,
   output: {
     filename: '[name].bundle.js',
