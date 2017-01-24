@@ -8,50 +8,37 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: uiConfig.build,
+    publicPath: '/dist/',
   },
   module: {
-    preLoaders: [
-      {
-        test: /\.(js|jsx)$/,
-        loader: "eslint",
-        exclude: /node_modules/
-      }
-    ],
     loaders: [
       {
-        test: /\.(js|jsx)$/,
-        loader: 'babel',
-        exclude: /(node_modules)/
+        test: /\.jsx?$/,
+        loaders: ['react-hot-loader', 'babel-loader'],
+        exclude: /(node_modules)/,
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract("style", "css")
+        loader: ExtractTextPlugin.extract({ fallbackLoader: 'style-loader', loader: 'css-loader' }),
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader',
       },
       {
         test: /\.(eot|woff|woff2|ttf|svg|png|jpe?g|gif)(\?\S*)?$/,
-        loader: 'url?size=8192&limit=100000&name=[name].[ext]'
-      }
-    ]
+        loader: 'url-loader',
+      },
+    ],
   },
   resolve: {
-    modulesDirectories: [__dirname + '/../node_modules', __dirname],
-    extensions: ["", ".js", ".jsx"],
+    modules: [
+      path.resolve(__dirname + '/../node_modules'),
+      __dirname,
+    ],
+    extensions: ['.js', '.jsx'],
   },
   plugins: [
-    new ExtractTextPlugin("style.css", {
-      allChunks: true
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"'
-    })
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
-  externals: {
-    'react/addons': true,
-    'react/lib/ExecutionEnvironment': true,
-    'react/lib/ReactContext': true
-  }
 };

@@ -1,8 +1,6 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect-php');
 var browserSync = require('browser-sync').create();
-var webpack = require('webpack-stream');
-var webpackConfig = require('./webpack.config.js');
 var rimraf = require('rimraf');
 var uiConfig = require('./ui.config.js');
 var path = require('path');
@@ -11,8 +9,10 @@ var fileExists = require('file-exists');
 var phpcs = require('gulp-phpcs');
 var phpmd = require('gulp-phpmd-plugin');
 var del = require('del');
-var w = require('webpack');
-var bundler = w(webpackConfig);
+var webpack = require('webpack-stream');
+var webpack2 = require('webpack');
+var webpackConfig = require('./webpack.config.js');
+var bundler = webpack2(webpackConfig);
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
 
@@ -20,9 +20,8 @@ gulp.task('clean', del.bind(null, uiConfig.cleanup_dir, {force: true}));
 
 gulp.task('webpack', function () {
   return gulp.src('./src/**')
-    .pipe(webpack(webpackConfig))
-    .pipe(gulp.dest(uiConfig.public + '/build'))
-    .pipe(gulp.dest(uiConfig.public + '/dist'));
+    .pipe(webpack(webpackConfig, webpack2))
+    .pipe(gulp.dest(uiConfig.public + '/dist/'));
 });
 
 gulp.task('reload', function () {
