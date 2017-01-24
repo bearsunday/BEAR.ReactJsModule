@@ -8,7 +8,7 @@
     "build": "npm run clean && $(npm bin)/webpack -p --progress --config ui/webpack.config.js",
     "build-prod": "npm run clean && BABEL_ENV=production $(npm bin)/webpack -p --progress --config ui/webpack.config.prod.js",
     "test": "$(npm bin)/karma start ui/karma.conf.js",
-    "lint": "$(npm bin)/eslint --ignore-pattern *-compiled.js ui/src; exit 0;"
+    "lint": "$(npm bin)/eslint 'ui/src/**/*.@(js|jsx)'"
   },
   "dependencies": {
     "react": "^15.0.1",
