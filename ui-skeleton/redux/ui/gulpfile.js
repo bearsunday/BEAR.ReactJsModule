@@ -1,48 +1,44 @@
-var gulp = require('gulp');
-var connect = require('gulp-connect-php');
-var browserSync = require('browser-sync').create();
-var rimraf = require('rimraf');
-var uiConfig = require('./ui.config.js');
-var path = require('path');
-var projectRoot = path.join(__dirname, '../');
-var fileExists = require('file-exists');
-var phpcs = require('gulp-phpcs');
-var phpmd = require('gulp-phpmd-plugin');
-var del = require('del');
-var webpack = require('webpack-stream');
-var webpack2 = require('webpack');
-var webpackConfig = require('./webpack.config.js');
-var bundler = webpack2(webpackConfig);
-var webpackDevMiddleware = require('webpack-dev-middleware');
-var webpackHotMiddleware = require('webpack-hot-middleware');
+const browserSync = require('browser-sync').create();
+const connect = require('gulp-connect-php');
+const del = require('del');
+const fileExists = require('file-exists');
+const gulp = require('gulp');
+const path = require('path');
+const phpcs = require('gulp-phpcs');
+const phpmd = require('gulp-phpmd-plugin');
+const uiConfig = require('./ui.config.js');
+const webpack = require('webpack-stream');
+const webpack2 = require('webpack');
+const webpackConfig = require('./webpack.config.js');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 
-gulp.task('clean', del.bind(null, uiConfig.cleanup_dir, {force: true}));
+const base = path.join(__dirname, '../');
+const bundler = webpack2(webpackConfig);
 
-gulp.task('webpack', function () {
-  return gulp.src('./src/**')
+gulp.task('clean', del.bind(null, uiConfig.cleanup_dir, { force: true }));
+
+gulp.task('webpack', () => gulp.src('./src/**')
     .pipe(webpack(webpackConfig, webpack2))
-    .pipe(gulp.dest(uiConfig.public + '/dist/'));
-});
+    .pipe(gulp.dest(path.join(uiConfig.public, '/dist/'))));
 
-gulp.task('reload', function () {
+gulp.task('reload', () => {
   browserSync.reload();
 });
 
-gulp.task('reload-php', ['clean'], function () {
+gulp.task('reload-php', ['clean'], () => {
   browserSync.reload();
 });
 
-gulp.task('php', ['webpack'], function () {
-  return connect.server({
-    port: 8080,
-    base: uiConfig.public
-  })
-});
+gulp.task('php', ['webpack'], () => connect.server({
+  port: 8080,
+  base: uiConfig.public,
+}));
 
-gulp.task('browser-sync', ['php'], function () {
+gulp.task('browser-sync', ['php'], () => {
   browserSync.init({
     proxy: {
-      target: "127.0.0.1:8080",
+      target: '127.0.0.1:8080',
       middleware: [
         webpackDevMiddleware(bundler, {
           // IMPORTANT: dev middleware can't access config, so we should
@@ -50,15 +46,15 @@ gulp.task('browser-sync', ['php'], function () {
           publicPath: webpackConfig.output.publicPath,
 
           // pretty colored output
-          stats: {colors: true}
+          stats: { colors: true },
 
           // for other settings see
           // http://webpack.github.io/docs/webpack-dev-middleware.html
         }),
 
         // bundler should be the same as above
-        webpackHotMiddleware(bundler)
-      ]
+        webpackHotMiddleware(bundler),
+      ],
     },
 
     // no need to watch '*.js' here, webpack will take care of it for us,
@@ -67,50 +63,50 @@ gulp.task('browser-sync', ['php'], function () {
       './src/**/*.css',
       './src/**/*.html',
       '../src/**/*.php',
-    ]
+    ],
   });
 });
 
-gulp.task('sync', ['browser-sync'], function () {
+gulp.task('sync', ['browser-sync'], () => {
   gulp.watch(
     uiConfig.watch_to_sync,
     ['reload']
   );
 });
 
-gulp.task('php-clean', ['php'], function () {
+gulp.task('php-clean', ['php'], () => {
   gulp.watch(
     '../src/**/*.php',
     ['clean']
   );
 });
 
-gulp.task('php-cs', ['php'], function () {
+gulp.task('php-cs', ['php'], () => {
   gulp.watch(
     '../src/**/*.php',
     ['clean', 'phpcs', 'phpmd']
   );
 });
 
-gulp.task('phpcs', function () {
-  var standard = fileExists(projectRoot + '/phpcs.xml') ? projectRoot + '/phpcs.xml' : 'psr2';
-  return gulp.src(projectRoot + '/src/**/*.php')
+gulp.task('phpcs', () => {
+  const standard = fileExists(path.join(base, '/phpcs.xml')) ? path.join(base, '/phpcs.xml') : 'psr2';
+  return gulp.src(`${base}/src/**/*.php`)
     .pipe(phpcs({
-      bin: projectRoot + '/vendor/bin/phpcs',
-      standard: standard,
+      bin: path.join(base, '/vendor/bin/phpcs'),
+      standard,
       warningSeverity: 0,
-      colors: true
+      colors: true,
     }))
     .pipe(phpcs.reporter('log'));
 });
 
-gulp.task('phpmd', function () {
-  var ruleset = fileExists(projectRoot + '/phpmd.xml') ? projectRoot + '/phpmd.xml' : 'unusedcode';
-  return gulp.src(projectRoot + '/src/**/*.php')
+gulp.task('phpmd', () => {
+  const ruleset = fileExists(path.join(base, '/phpmd.xml')) ? path.join(base, '/phpmd.xml') : 'unusedcode';
+  return gulp.src(path.join(base, '/src/**/*.php'))
     .pipe(phpmd({
-      bin: projectRoot + 'vendor/bin/phpmd',
+      bin: path.join(base, 'vendor/bin/phpmd'),
       format: 'text',
-      ruleset: ruleset
+      ruleset,
     }))
     .pipe(phpmd.reporter('log'));
 });

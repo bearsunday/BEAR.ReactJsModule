@@ -1,7 +1,7 @@
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var path = require("path");
-var uiConfig = require('./ui.config.js');
-var webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+const uiConfig = require('./ui.config.js');
+const webpack = require('webpack');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
@@ -34,7 +34,7 @@ module.exports = {
   },
   resolve: {
     modules: [
-      path.resolve(__dirname + '/../node_modules'),
+      path.join(__dirname, '/../node_modules'),
       __dirname,
     ],
     extensions: ['.js', '.jsx'],
@@ -42,7 +42,7 @@ module.exports = {
   plugins: [
     new webpack.LoaderOptionsPlugin({
       minimize: true,
-      debug: false
+      debug: false,
     }),
   ],
 };

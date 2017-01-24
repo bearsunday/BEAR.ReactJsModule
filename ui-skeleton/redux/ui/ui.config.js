@@ -1,20 +1,20 @@
-var path = require("path");
-var base = path.join(__dirname, '../');
-var entry = require('./entry.js');
+const path = require('path');
+
+const base = path.join(__dirname, '../');
+const entry = require('./entry.js');
 
 module.exports = {
-  public: base + 'var/www',
-  build: base + 'var/www/dist',
+  public: path.join(base, 'var/www'),
+  build: path.join(base, 'var/www/dist'),
   watch_to_sync: [
-    base + 'src/**/*.php',
-    base + 'src/**/*.twig',
-    base + 'var/lib/twig/*.twig',
-    base + 'ui/src/**/*.css',
-    base + 'ui/src/**/*.html',
+    path.join(base, 'src/**/*.php'),
+    path.join(base, 'src/**/*.twig'),
+    path.join(base, 'src/**/*.css'),
+    path.join(base, 'src/**/*.html'),
   ],
   cleanup_dir: [
-    base + 'var/tmp/*',
+    path.join(base, 'var/tmp/*'),
   ],
   server: '127.0.0.1:8080',
-  entry: entry
+  entry,
 };
