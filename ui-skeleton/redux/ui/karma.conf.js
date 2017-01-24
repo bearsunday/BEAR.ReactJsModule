@@ -1,7 +1,6 @@
 // Karma configuration
-// Generated on Wed Apr 27 2016 17:05:06 GMT+0900 (JST)
 
-module.exports = function (config) {
+module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -15,7 +14,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test/**/*.spec.js'
+      'test/**/*.spec.js',
     ],
 
 
@@ -27,15 +26,15 @@ module.exports = function (config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       'src/**/*.js': ['webpack', 'sourcemap'],
-      'test/**/*.spec.js': ['webpack', 'sourcemap']
+      'test/**/*.spec.js': ['webpack', 'sourcemap'],
     },
 
 
-    webpack: { //kind of a copy of your webpack config
-      devtool: 'inline-source-map', //just do inline source maps instead of the default
+    webpack: { // kind of a copy of your webpack config
+      devtool: 'inline-source-map', // just do inline source maps instead of the default
       resolve: {
         extensions: ['', '.js', '.ts'],
-        modulesDirectories: [__dirname + '/../node_modules', __dirname]
+        modulesDirectories: [`${__dirname}/../node_modules`, __dirname],
       },
       module: {
         loaders: [
@@ -43,18 +42,18 @@ module.exports = function (config) {
             test: /\.js$/,
             exclude: /\/node_modules\//,
             loader: 'babel',
-          }
-        ]
+          },
+        ],
       },
       externals: {
-        'cheerio': 'window',
+        cheerio: 'window',
         'react/addons': true,
         'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': true
-      }
+        'react/lib/ReactContext': true,
+      },
     },
 
-    
+
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
@@ -63,7 +62,7 @@ module.exports = function (config) {
 
     coverageReporter: {
       type: 'html',
-      dir: 'build/coverage/'
+      dir: 'build/coverage/',
     },
 
 
@@ -76,7 +75,8 @@ module.exports = function (config) {
 
 
     // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN ||
+    // config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
 
 
@@ -92,7 +92,7 @@ module.exports = function (config) {
       'karma-sourcemap-loader',
       'karma-chai',
       'karma-coverage',
-      'karma-spec-reporter'
+      'karma-spec-reporter',
     ],
 
     // start these browsers
@@ -106,6 +106,6 @@ module.exports = function (config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
-  })
-}
+    concurrency: Infinity,
+  });
+};
