@@ -12,9 +12,6 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const HelloWorld = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Hello);
+const App = connect(mapStateToProps, mapDispatchToProps)(Hello);
 
-export default HelloWorld;
+export default App;
