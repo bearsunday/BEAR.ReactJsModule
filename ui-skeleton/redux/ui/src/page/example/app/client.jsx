@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import App from '../containers/App';
 import configureStore from '../store/configureStore';
 
-const preloadedState = window.__PRELOADED_STATE__;
+const preloadedState = window.__PRELOADED_STATE__; // eslint-disable-line no-underscore-dangle
 const store = configureStore(preloadedState);
 
 render(
