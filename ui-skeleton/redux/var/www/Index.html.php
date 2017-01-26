@@ -14,7 +14,6 @@ return <<<"EOT"
 <body>
 <div id="root">{$view->markup}</div>
 <script>{$view->js}</script>
-<script src="dist/react.bundle.js"></script>
 <script src="dist/example.bundle.js"></script>
 </body>
 </html>
